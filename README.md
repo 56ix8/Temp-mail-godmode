@@ -38,3 +38,12 @@ CREATE TABLE IF NOT EXISTS outbox (
     subject TEXT,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+```
+
+### 1.2 Konfigurasi Vault (Cloudflare R2)
+R2 digunakan untuk menampung file biner (attachment) yang diekstrak dari payload email.
+
+1. Buka Dashboard Cloudflare > Storage & Databases > R2.
+2. Buat bucket baru dengan nama `svara-vault`.
+3. Buka tab Settings pada bucket tersebut, cari bagian Object Lifecycle Rules.
+4. Tambahkan aturan baru: Set agar objek otomatis dihapus (Delete objects) setelah usia 1 hari. Langkah ini krusial untuk menjaga efisiensi ruang penyimpanan dan privasi data.
